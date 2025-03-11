@@ -1,0 +1,22 @@
+services:
+  chatbot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: streamlit-chatbot
+    ports:
+      - "8502:8501"
+    volumes:
+      # Монтируем локальную директорию с базой данных ChromaDB
+      - ./chroma_langchain_db:/app/chroma_langchain_db
+      # Убедимся, что директория knowledge существует
+      - ./chroma_langchain_db/knowledge:/app/chroma_langchain_db/knowledge
+      # Монтируем файлы для сохранения истории чата и кэша
+      - ./chat_history.db:/app/chat_history.db
+      - ./response_cache.json:/app/response_cache.json
+      # Монтируем .env файл с API ключами
+      - ./.env:/app/.env
+    environment:
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - SERPER_API_KEY=${SERPER_API_KEY}
+    restart: unless-stopped

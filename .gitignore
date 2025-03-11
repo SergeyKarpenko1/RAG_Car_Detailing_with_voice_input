@@ -1,0 +1,29 @@
+# Игнорировать файлы окружения
+.env
+
+# Игнорировать кэши и базы данных
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.db
+response_cache.json
+response_cache.json.bak
+chat_history.db
+
+# Игнорировать директории виртуального окружения
+env/
+venv/
+ENV/
+
+# Игнорировать файлы macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Игнорировать директории и файлы ChromaDB
+chroma_langchain_db/
+
+# Игнорировать логи
+*.log
